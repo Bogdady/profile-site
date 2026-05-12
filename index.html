@@ -2,135 +2,1390 @@
 <html lang="en">
 
 <head>
-    <title>JONAYET BOGDADY</title>
-    <style>
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #e6f0ff;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jonayet Bogdady — Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        header a {
-            color: blue;
-            text-decoration: none;
-        }
+    :root {
+      --black: #080707;
+      --black2: #0e0d0c;
+      --black3: #141210;
+      --black4: #1c1a16;
+      --gold: #c9a84c;
+      --gold2: #e8c97a;
+      --gold3: #f5e4b0;
+      --gold-dim: rgba(201, 168, 76, 0.15);
+      --gold-line: rgba(201, 168, 76, 0.25);
+      --text: #f0ead8;
+      --text2: #9e9484;
+      --text3: #5a5248;
+      --border: rgba(201, 168, 76, 0.12);
+      --border2: rgba(201, 168, 76, 0.28);
+    }
 
-        a {
-            color: #0077cc;
-            text-decoration: none;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        header {
-            background-color: #0077cc;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-        header img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid white;
-            margin-bottom: 15px;
-        }
+    /* ── CUSTOM CURSOR ── */
+    .cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+    }
 
-        section {
-            padding: 30px 20px;
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 10px;
-            text-decoration: none;
-            box-shadow: 0 2px 8px rgba(red, green, blue, alpha);
-        }
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--gold-line);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), width 0.3s, height 0.3s, opacity 0.3s;
+    }
 
-        h2 {
-            color: rgb(113, 200, 250);
-            border-bottom: 2px solid #cce0ff;
-            padding-bottom: 5px;
-        }
+    body:hover .cursor-ring {
+      opacity: 1;
+    }
 
-        ul {
-            padding-left: 20px;
-        }
+    /* ── DIAGONAL TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: repeating-linear-gradient(-45deg,
+          transparent,
+          transparent 60px,
+          rgba(201, 168, 76, 0.012) 60px,
+          rgba(201, 168, 76, 0.012) 61px);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .contact a {
-            display: inline-block;
-            margin-right: 10px;
-            color: #0077cc;
-            text-decoration: none;
-        }
+    /* ── SIDE ORNAMENT LINES ── */
+    .side-line {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent 0%, var(--gold-line) 20%, var(--gold-line) 80%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
 
-        .contact a:hover {
-            text-decoration: none;
-        }
-    </style>
+    .side-line.left {
+      left: 3.5rem;
+    }
+
+    .side-line.right {
+      right: 3.5rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.6rem 0;
+    }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 5rem;
+      right: 5rem;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: var(--gold2);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      font-style: italic;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    nav a:hover {
+      color: var(--gold2);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      align-items: center;
+      gap: 0;
+      padding-top: 90px;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 5.5rem;
+      padding-right: 5.5rem;
+    }
+
+    .hero-text {
+      padding-right: 4rem;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+    }
+
+    .eyebrow-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .eyebrow span {
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 0.15em;
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold2);
+      display: block;
+    }
+
+    .title-rule {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin: 1.8rem 0;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text2);
+      line-height: 1.85;
+      max-width: 420px;
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.6s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.75s forwards;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      background: transparent;
+      color: var(--gold2);
+      border: 1px solid var(--gold-line);
+      padding: 0.85rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold-dim);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .btn-gold:hover::before {
+      transform: scaleX(1);
+    }
+
+    .btn-gold:hover {
+      border-color: var(--border2);
+      color: var(--gold3);
+    }
+
+    .btn-link {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-link:hover {
+      color: var(--gold2);
+    }
+
+    .btn-link svg {
+      transition: transform 0.25s;
+    }
+
+    .btn-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* ── HERO PORTRAIT ── */
+    .hero-portrait {
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: 380px;
+      height: 480px;
+    }
+
+    .portrait-border-outer {
+      position: absolute;
+      inset: -12px;
+      border: 1px solid var(--border);
+    }
+
+    .portrait-border-inner {
+      position: absolute;
+      inset: -6px;
+      border: 1px solid var(--border2);
+    }
+
+    .portrait-corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+
+    .portrait-corner.tl {
+      top: -12px;
+      left: -12px;
+      border-width: 2px 0 0 2px;
+    }
+
+    .portrait-corner.tr {
+      top: -12px;
+      right: -12px;
+      border-width: 2px 2px 0 0;
+    }
+
+    .portrait-corner.bl {
+      bottom: -12px;
+      left: -12px;
+      border-width: 0 0 2px 2px;
+    }
+
+    .portrait-corner.br {
+      bottom: -12px;
+      right: -12px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    .portrait-fallback {
+      width: 100%;
+      height: 100%;
+      background: var(--black4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .portrait-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8, 7, 7, 0.4) 0%, transparent 50%);
+    }
+
+    /* ── FLOATING LABEL ── */
+    .portrait-label {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      background: var(--black2);
+      border-top: 1px solid var(--border);
+      padding: 1rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .portrait-label-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .portrait-label-role {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .available-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text2);
+    }
+
+    .available-dot::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.4
+      }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 8rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+
+    .section-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--gold-line);
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      line-height: 1.15;
+    }
+
+    h2 em {
+      font-style: italic;
+      color: var(--gold2);
+    }
+
+    .section-rule {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin-top: 1.5rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 0.95rem;
+      color: var(--text2);
+      line-height: 1.9;
+    }
+
+    .about-body p {
+      margin-bottom: 1.25rem;
+    }
+
+    .about-body p strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .about-body blockquote {
+      border-left: 2px solid var(--gold);
+      padding: 0.75rem 1.5rem;
+      margin: 2rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--gold3);
+      line-height: 1.5;
+    }
+
+    .about-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .metric {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .metric:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .metric-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold2);
+      line-height: 1;
+      min-width: 80px;
+    }
+
+    .metric-num sup {
+      font-size: 1.2rem;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .metric-desc {
+      font-size: 0.82rem;
+      color: var(--text2);
+      margin-top: 0.2rem;
+    }
+
+    /* ── SKILLS ── */
+    #skills {
+      background: var(--black2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .skill-col {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .skill-col:last-child {
+      border-right: none;
+    }
+
+    .skill-col:hover {
+      background: var(--gold-dim);
+    }
+
+    .skill-col-icon {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      display: block;
+      filter: grayscale(0.3);
+    }
+
+    .skill-col h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--gold3);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.03em;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .skill-list li {
+      font-size: 0.8rem;
+      color: var(--text2);
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-list li::before {
+      content: '';
+      width: 4px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 3rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .edu-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .edu-item:hover::before {
+      width: 100%;
+    }
+
+    .edu-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .edu-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--gold);
+      padding-top: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .edu-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+    }
+
+    .edu-body p {
+      font-size: 0.82rem;
+      color: var(--text2);
+      letter-spacing: 0.06em;
+    }
+
+    .edu-body a {
+      color: var(--gold2);
+      text-decoration: none;
+    }
+
+    .edu-body a:hover {
+      color: var(--gold3);
+    }
+
+    .edu-badge {
+      display: inline-block;
+      background: rgba(201, 168, 76, 0.08);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--black2);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-row-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text3);
+      min-width: 60px;
+    }
+
+    .contact-row-val {
+      font-size: 0.85rem;
+      color: var(--text2);
+    }
+
+    .contact-row-val a {
+      color: var(--gold2);
+      text-decoration: none;
+    }
+
+    .contact-row-val a:hover {
+      color: var(--gold3);
+    }
+
+    /* ── SOCIAL LINKS ── */
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      group: true;
+      transition: padding-left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+
+    .social-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .social-item:hover {
+      padding-left: 0.5rem;
+    }
+
+    .social-item:hover::before {
+      width: 100%;
+    }
+
+    .social-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .social-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.03em;
+      transition: color 0.25s;
+    }
+
+    .social-item:hover .social-name {
+      color: var(--gold2);
+    }
+
+    .social-handle {
+      font-size: 0.72rem;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.25s;
+    }
+
+    .social-item:hover .social-handle {
+      color: var(--gold);
+    }
+
+    .arrow {
+      font-size: 0.8rem;
+      transition: transform 0.25s;
+    }
+
+    .social-item:hover .arrow {
+      transform: translate(3px, -3px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--text3);
+    }
+
+    .footer-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.12s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.24s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.36s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 120px 2rem 4rem;
+        text-align: center;
+      }
+
+      .hero-text {
+        padding-right: 0;
+      }
+
+      .hero-portrait {
+        display: flex;
+        justify-content: center;
+      }
+
+      .portrait-frame {
+        width: 280px;
+        height: 360px;
+      }
+
+      .eyebrow {
+        justify-content: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .title-rule {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .skill-col:nth-child(2) {
+        border-right: none;
+      }
+
+      .skill-col:nth-child(3) {
+        border-right: 1px solid var(--border);
+      }
+
+      .skill-col:nth-child(3),
+      .skill-col:nth-child(4) {
+        border-top: 1px solid var(--border);
+      }
+
+      .container {
+        padding: 0 2rem;
+      }
+
+      nav {
+        padding: 1.2rem 0;
+      }
+
+      .nav-inner {
+        padding: 0 2rem;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .side-line {
+        display: none;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-col {
+        border-right: none !important;
+        border-top: 1px solid var(--border);
+      }
+
+      .skill-col:first-child {
+        border-top: none;
+      }
+
+      .edu-item {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <!-- Replace the link below with your own image -->
-        <img src="me.jpg" alt="Your Photo" />
-        <h1>JONAYET BOGDADY</h1>
-        <h3>
-            <p>Student of Green University of Bangladesh <a href="https://www.green.edu.bd/">(GUB)</a> </p>
-        </h3>
-    </header>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+  <div class="side-line left"></div>
+  <div class="side-line right"></div>
 
-    <section>
-        <h2>About Me</h2>
-        <p> Hello! I'm Jonayet Bogdady, a running Computer Science and Engineering student at Green University of
-            Bangladesh. I'm passionate about learning programming languages and enjoy solving problems and
-            continuously
-            improving my skills. In my free time, I explore design, watch tech videos, or help friends with their
-            computer issues.</p>
-    </section>
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="#">Jonayet Bogdady</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <section>
-        <h2>Skills</h2>
-        <ul><b>
-                <li>Microsoft Office Programme</li>
-                <li>C, C++, Java, Python, HTML (Beginner)</li>
-                <li>Photoshop, Canva</li>
-            </b>
-        </ul>
-    </section>
+  <div class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span>CSE Student &amp; Learner</span>
+      </div>
+      <h1>Jonayet<br><em>Bogdady</em></h1>
+      <div class="title-rule"></div>
+      <p class="hero-desc">
+        A Computer Science &amp; Engineering student at Green University of Bangladesh — passionate about programming,
+        design, and solving real-world problems with technology.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-gold">Get in touch</a>
+        <a href="#about" class="btn-link">
+          Explore
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+      </div>
+    </div>
 
-    <section>
-        <h2>Education</h2>
+    <div class="hero-portrait">
+      <div class="portrait-frame">
+        <div class="portrait-border-outer"></div>
+        <div class="portrait-border-inner"></div>
+        <div class="portrait-corner tl"></div>
+        <div class="portrait-corner tr"></div>
+        <div class="portrait-corner bl"></div>
+        <div class="portrait-corner br"></div>
+        <img class="portrait-img" src="https://bogdady.github.io/profile-site/me.jpg" alt="Jonayet Bogdady"
+          onerror="this.style.display='none';document.querySelector('.portrait-fallback').style.display='flex'">
+        <div class="portrait-fallback" style="display:none;">JB</div>
+        <div class="portrait-overlay"></div>
+        <div class="portrait-label">
+          <div>
+            <div class="portrait-label-name">Jonayet Bogdady</div>
+            <div class="portrait-label-name">Student, Department of CSE</div>
+            <div class="portrait-label-role">Green University of Bangladesh</div>
+          </div>
+          <div class="available-dot">Available</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <p><b>Higher Secondary Certificate (HSC in Science)</b></p>
-        <ul>
-            <li><a href="https://locator.eduportalbd.com/institutes/?ins=112327">Govt. Safar Ali College, Araihazar</a>
-            </li>
-            <li>Passing Year <strong>2023</strong></li>
-        </ul>
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-number">01 — About</div>
+        <h2>Curiosity as a<br><em>driving force</em></h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="about-layout">
+        <div class="about-body reveal reveal-delay-1">
+          <p>Hello — I'm <strong>Jonayet Bogdady</strong>, a running Computer Science and Engineering student at
+            <strong>Green University of Bangladesh</strong>.
+          </p>
+          <p>I'm passionate about learning programming languages and enjoy solving problems, continuously improving my
+            skills with each challenge I encounter.</p>
 
-        <p><b>Secondary School Certificate (SSC in Science)</b></p>
-        <ul>
-            <li><a href="https://locator.eduportalbd.com/institutes/?ins=112306">Panchgaon Ml High School, Araihazar</a>
-            </li>
-            <li>Passing Year <strong>2021</strong></li>
-        </ul>
-    </section>
+          <blockquote>"In my free time, I explore design or help my friends with their academicissues."</blockquote>
 
-    <section class="contact">
-        <h2>Contact</h2>
-        <p><b>Phone: +8801924877237 (Whatsapp, Telegram)</b></p>
-        <p><b>Email: jonayet251.cse.gub@gmail.com </b></p>
-        <a href="https://www.facebook.com/jonayet.bogdady258">Facebook</a>
-        <a href="https://m.me/jonayet.bogdady258">Messenger</a>
-        <a href="http://wa.me/+8801924877237">Whatsapp</a>
-        <a href="http://t.me/jonayetbogdady">Telegram</a>
-        <a href="https://www.instagram.com/jonayet258/">Instagram</a>
-        <a href="https://x.com/Bogdady73878">X</a>
-        <a href="https://github.com/Bogdady">Githaub</a>
-    </section>
+          <p>I believe the intersection of technology and design creates the most meaningful experiences — and that's
+            the space I'm constantly working to inhabit more fully.</p>
+        </div>
+        <div class="about-metrics reveal reveal-delay-2">
+          <div class="metric">
+            <div>
+              <div class="metric-num">1<sup>+</sup></div>
+            </div>
+            <div>
+              <div class="metric-label">Years Studying</div>
+              <div class="metric-desc">Computer Science & Engineering at GUB</div>
+            </div>
+          </div>
+          <div class="metric">
+            <div>
+              <div class="metric-num">5<sup>+</sup></div>
+            </div>
+            <div>
+              <div class="metric-label">Languages</div>
+              <div class="metric-desc">C, C++, Java, Python, HTML</div>
+            </div>
+          </div>
+          <div class="metric">
+            <div>
+              <div class="metric-num">2</div>
+            </div>
+            <div>
+              <div class="metric-label">Design Tools</div>
+              <div class="metric-desc">Photoshop, Canva </div>
+            </div>
+          </div>
+          <div class="metric">
+            <div>
+              <div class="metric-num">200+</div>
+            </div>
+            <div>
+              <div class="metric-label">Problems Solved</div>
+              <div class="metric-desc">Always learning, always growing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-number">02 — Skills</div>
+        <h2>A growing<br><em>repertoire</em></h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="skills-grid reveal reveal-delay-1">
+        <div class="skill-col">
+          <span class="skill-col-icon">⌨️</span>
+          <h3>Programming (Beginner)</h3>
+          <ul class="skill-list">
+            <li>C Language</li>
+            <li>C++</li>
+            <li>Java</li>
+            <li>Python</li>
+            <li>HTML</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <span class="skill-col-icon">📋</span>
+          <h3>Productivity</h3>
+          <ul class="skill-list">
+            <li>Microsoft Word</li>
+            <li>Excel</li>
+            <li>PowerPoint</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <span class="skill-col-icon">🎨</span>
+          <h3>Design</h3>
+          <ul class="skill-list">
+            <li>Adobe Photoshop</li>
+            <li>Canva</li>
+            <li>Graphic Design</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <span class="skill-col-icon">🤝</span>
+          <h3>Interpersonal</h3>
+          <ul class="skill-list">
+            <li>Problem Solving</li>
+            <li>Technical Support</li>
+            <li>Teamwork</li>
+            <li>Communication</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-number">03 — Education</div>
+        <h2>The academic<br><em>foundation</em></h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="edu-list">
+        <div class="edu-item reveal reveal-delay-1">
+          <div class="edu-year">Present</div>
+          <div class="edu-body">
+            <h3>B.Sc. Computer Science &amp; Engineering</h3>
+            <p><a href="https://www.green.edu.bd/" target="_blank">Green University of Bangladesh</a></p>
+            <span class="edu-badge">Currently Enrolled</span>
+          </div>
+        </div>
+        <div class="edu-item reveal reveal-delay-2">
+          <div class="edu-year">2023</div>
+          <div class="edu-body">
+            <h3>Higher Secondary Certificate — Science</h3>
+            <p><a href="https://locator.eduportalbd.com/institutes/?ins=112327" target="_blank">Govt. Safar Ali College,
+                Araihazar</a></p>
+            <span class="edu-badge">HSC Passed</span>
+          </div>
+        </div>
+        <div class="edu-item reveal reveal-delay-3">
+          <div class="edu-year">2021</div>
+          <div class="edu-body">
+            <h3>Secondary School Certificate — Science</h3>
+            <p><a href="https://locator.eduportalbd.com/institutes/?ins=112306" target="_blank">Panchgaon Ml High
+                School, Araihazar</a></p>
+            <span class="edu-badge">SSC Passed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-number">04 — Contact</div>
+        <h2>Begin a<br><em>conversation</em></h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="contact-layout">
+        <div class="reveal reveal-delay-1">
+          <p class="contact-intro">
+            I welcome new connections — whether you're a fellow student, a mentor, or simply someone who wants to talk
+            technology, design, or ideas. Don't hesitate to reach out.
+          </p>
+          <div class="contact-detail">
+            <div class="contact-row">
+              <div class="contact-row-label">Phone</div>
+              <div class="contact-row-val"><a href="tel:+8801924877237">+880 1924-877237</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-row-label">Email</div>
+              <div class="contact-row-val"><a
+                  href="mailto:jonayet251.cse.gub@gmail.com">jonayet251.cse.gub@gmail.com</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-row-label">Location</div>
+              <div class="contact-row-val">Bangladesh 🇧🇩</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links reveal reveal-delay-2">
+          <a href="https://www.facebook.com/jonayet.bogdady258" target="_blank" class="social-item">
+            <span class="social-name">Facebook</span>
+            <span class="social-handle">jonayet.bogdady258 <span class="arrow">↗</span></span>
+          </a>
+          <a href="https://m.me/jonayet.bogdady258" target="_blank" class="social-item">
+            <span class="social-name">Messenger</span>
+            <span class="social-handle">jonayet.bogdady258 <span class="arrow">↗</span></span>
+          </a>
+          <a href="http://wa.me/+8801924877237" target="_blank" class="social-item">
+            <span class="social-name">WhatsApp</span>
+            <span class="social-handle">+880 1924-877237 <span class="arrow">↗</span></span>
+          </a>
+          <a href="http://t.me/jonayetbogdady" target="_blank" class="social-item">
+            <span class="social-name">Telegram</span>
+            <span class="social-handle">@jonayetbogdady <span class="arrow">↗</span></span>
+          </a>
+          <a href="https://www.instagram.com/jonayet258/" target="_blank" class="social-item">
+            <span class="social-name">Instagram</span>
+            <span class="social-handle">@jonayet258 <span class="arrow">↗</span></span>
+          </a>
+          <a href="https://x.com/Bogdady73878" target="_blank" class="social-item">
+            <span class="social-name">X (Twitter)</span>
+            <span class="social-handle">@Bogdady73878 <span class="arrow">↗</span></span>
+          </a>
+          <a href="https://github.com/Bogdady" target="_blank" class="social-item">
+            <span class="social-name">GitHub</span>
+            <span class="social-handle">github.com/Bogdady <span class="arrow">↗</span></span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy">© 2026 Jonayet Bogdady — All rights reserved</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Custom cursor ── */
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+    function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; cur.style.opacity = '0'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; cur.style.opacity = '1'; });
+    });
+
+    /* ── Scroll reveal ── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
 </body>
 
 </html>
